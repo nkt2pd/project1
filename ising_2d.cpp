@@ -89,6 +89,9 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    int L = 30;
+    int Ns = L * L;
+
     //initialize chain of Ising Variables
     init_chain();
 
