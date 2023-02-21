@@ -117,12 +117,13 @@ int main(int argc, char *argv[]) {
     spin5[0].L = L5;
 
     if (mode == 1) {
-        clear_Wolff_files();
+        //clear_Wolff_files();
 
         Site *spin;
         int *Ns;
         int *L;
-        for (int i = 0; i < 5; i++) {
+        
+        for (int i = 2; i < 5; i++) {
             if (i == 0) {
                 spin = spin1;
                 Ns = &spin1[0].Ns;
@@ -173,6 +174,7 @@ int main(int argc, char *argv[]) {
                     mode_dat = 0;
                 }
 
+                cout << "Lattice Length = " << *L << endl;
                 cout << "T = " << T << endl;
             
                 Wolff_Cluster_Sim(1./T, mode_dat, spin, Ns, L, i);
@@ -364,7 +366,8 @@ double Wolff_Sweep(double beta, Site *spin, int *Ns, int *L) {
     C.sites.push_back((int)r);
     F_old.sites.push_back((int)r);
 
-    int in_cluster[*Ns] = {0};
+    vector<int> in_cluster(*Ns);
+
     in_cluster[(int)r] = 1;
 
     while(!F_old.sites.empty()) {
